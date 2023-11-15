@@ -24,7 +24,8 @@
   },
   "workspaces": [
     "packages/*",
-    "scripts/*"
+    "scripts/*",
+    "website"
   ],
   "author": "Changesets Contributors",
   "contributors": [
