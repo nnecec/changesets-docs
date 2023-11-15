@@ -40,24 +40,7 @@ To make releasing easier, you can use [this changesets github action](https://gi
 
 ## Documentation
 
-- [Intro to using changesets](./docs/intro-to-using-changesets.md)
-- [Detailed explanation](./docs/detailed-explanation.md)
-- [Common questions](./docs/common-questions.md)
-- [Adding a changeset](./docs/adding-a-changeset.md)
-- [Automating changesets](./docs/automating-changesets.md)
-- [Checking for changesets](./docs/checking-for-changesets.md)
-- [Command line options](./docs/command-line-options.md)
-- [Config file options](./docs/config-file-options.md)
-- [Decisions](./docs/decisions.md)
-- [Dictionary](./docs/dictionary.md)
-- [Fixed packages](./docs/fixed-packages.md)
-- [Linked packages](./docs/linked-packages.md)
-- [Modifying changelog format](./docs/modifying-changelog-format.md)
-- [Prereleases](./docs/prereleases.md)
-- [Problems publishing in monorepos](./docs/problems-publishing-in-monorepos.md)
-- [Snapshot releases](./docs/snapshot-releases.md)
-- [Versioning applications and other non-npm packages](./docs/versioning-apps.md)
-- [Experimental Options](./docs/experimental-options.md)
+Visit [Documentation](https://changesets-docs.vercel.app/) to view more information.
 
 ## Cool Projects already using Changesets for versioning and changelogs
 
