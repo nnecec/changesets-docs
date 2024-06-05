@@ -1,6 +1,6 @@
 # Command line options
 
-The command line for changesets is the main way of interacting with it. There are 4 main commands. If you are looking for how we recommend you setup and manage changesets with the commands, check out our [intro to using changesets](./intro-to-using-changesets.md)
+The command line for changesets is the main way of interacting with it. There are 4 main commands. If you are looking for how we recommend you setup and manage changesets with the commands, check out our [intro to using changesets](/intro-to-using-changesets)
 
 - init
 - add [--empty][--open]
@@ -14,7 +14,7 @@ The most important commands are `add`, which is used by contributors to add info
 
 ## `init`
 
-```
+```bash
 changeset init
 ```
 
@@ -22,13 +22,13 @@ This command sets up the .changeset folder. It generates a readme and a config f
 
 ## `add`
 
-```
+```bash
 changeset add
 ```
 
 or just
 
-```
+```bash
 changeset
 ```
 
@@ -40,7 +40,7 @@ Once confirmed, the changeset will be written a Markdown file that contains the 
 
 A changeset that major bumps @changesets/cli would look like this:
 
-```
+```mdx
 ---
 "@changesets/cli": major
 ---
@@ -51,13 +51,13 @@ If you want to modify this file after it's generated, that's completely fine or 
 
 - `--empty` - allows you to create an empty changeset if no packages are being bumped, usually only required if you have CI that blocks merges without a changeset.
 
-```
+```bash
 changeset --empty
 ```
 
 A changeset created with the empty flag would look like this:
 
-```
+```mdx
 ---
 ---
 ```
@@ -68,7 +68,7 @@ If you set the commit option in the config, the command will add the updated cha
 
 ## version
 
-```
+```bash
 changeset version
 ```
 
@@ -78,7 +78,7 @@ This is one of two commands responsible for releasing packages. The version comm
 
 Version has two options, `ignore` and `snapshot`:
 
-```
+```bash
 changeset version --ignore PACKAGE_NAME
 ```
 
@@ -87,17 +87,17 @@ This command is used to allow you to skip packages from being published. This al
 1. If the package is mentioned in a changeset that also includes a package that is not ignored, publishing will fail.
 2. If the package requires one of its dependencies to be updated as part of a publish.
 
-These restrictions exist to ensure your repository or published code does not end up in a broken state. For additional information on the intricacies of publishing, check out our guide on [problems publishing in monorepos](./problems-publishing-in-monorepos.md).
+These restrictions exist to ensure your repository or published code does not end up in a broken state. For additional information on the intricacies of publishing, check out our guide on [problems publishing in monorepos](/problems-publishing-in-monorepos).
 
-```
+```bash
 changeset version --snapshot
 ```
 
-Snapshot is used for a special kind of publishing for testing - it creates temporary versions with a tag, instead of updating versions from the current semver ranges. You should not use this without [reading the documentation on snapshot releases](./snapshot-releases.md)
+Snapshot is used for a special kind of publishing for testing - it creates temporary versions with a tag, instead of updating versions from the current semver ranges. You should not use this without [reading the documentation on snapshot releases](/snapshot-releases)
 
 ## publish
 
-```
+```bash
 changeset publish [--otp={token}]
 ```
 
@@ -107,20 +107,20 @@ Because this command assumes that the last commit is the release commit, you sho
 
 `--otp={token}` - allows you to provide an npm one-time password if you have auth and writes enabled on npm. The CLI also prompts for the OTP if it's not provided with the --otp option.
 
-`--tag TAGNAME` - for packages that are published, the chosen tag will be used instead of `latest`, allowing you to publish changes intended for testing and validation, not main consumption. This will most likely be used with [snapshot releases](./snapshot-releases.md).
+`--tag TAGNAME` - for packages that are published, the chosen tag will be used instead of `latest`, allowing you to publish changes intended for testing and validation, not main consumption. This will most likely be used with [snapshot releases](/snapshot-releases).
 
 ### Git Tags
 
 It is useful to have git tags of a publish, to allow people looking for the code at that time to find them. We generate tags in git during publish, but you will need to push them back up if you want to make them available. We recommend after publish you run:
 
-```
+```bash
 git push --follow-tags
 ```
 
 ## status
 
-```
-status [--verbose] [--output={filePath}] [--since={gitTag}]
+```bash
+changeset status [--verbose] [--output={filePath}] [--since={gitTag}]
 ```
 
 The status command provides information about the changesets that currently exist. If there are no changesets present, it exits with an error status code.
@@ -135,18 +135,18 @@ The status command provides information about the changesets that currently exis
 
 ## pre
 
-```
-pre [exit|enter {tag}]
+```bash
+changeset pre [exit|enter {tag}]
 ```
 
-The pre command enters and exits pre mode. The command does not do any actual versioning, when doing a pre-release, you should run changeset pre enter next(or a different tag, the tag is what is in versions and is the npm dist tag) and then do the normal release process with changeset version and changeset publish. For more information about the pre command, see the prereleases [the prereleases documentation](https://github.com/changesets/changesets/blob/master/docs/prereleases.md).
+The pre command enters and exits pre mode. The command does not do any actual versioning, when doing a pre-release, you should run changeset pre enter next(or a different tag, the tag is what is in versions and is the npm dist tag) and then do the normal release process with changeset version and changeset publish. For more information about the pre command, see the prereleases [the prereleases documentation](/prereleases).
 
-> NOTE: pre-releases are a very complicated feature. Many of the safety rails that changesets helps you with will be taken off. We recommend that you read both [problems publishing in monorepos](./problems-publishing-in-monorepos.md) and be clear on both exiting and entering pre-releases before using it. You may also prefer using [snapshot releases](./snapshot-releases.md) for a slightly less involved process.
+> NOTE: pre-releases are a very complicated feature. Many of the safety rails that changesets helps you with will be taken off. We recommend that you read both [problems publishing in monorepos](/problems-publishing-in-monorepos) and be clear on both exiting and entering pre-releases before using it. You may also prefer using [snapshot releases](/snapshot-releases) for a slightly less involved process.
 
 ## tag
 
-```
-tag
+```bash
+changeset tag
 ```
 
 The tag command creates git tags for the current version of all packages. The tags created are equivalent to those created by [`changeset publish`](#publish), but the `tag` command does not publish anything to npm.
