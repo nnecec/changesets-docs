@@ -1,5 +1,12 @@
 # @changesets/assemble-release-plan
 
+## 6.0.3
+
+### Patch Changes
+
+- Updated dependencies [[`dd6e5bb`](https://github.com/changesets/changesets/commit/dd6e5bbf74e246d7a742aa50424989462679b0ca)]:
+  - @changesets/get-dependents-graph@2.1.1
+
 ## 6.0.2
 
 ### Patch Changes
@@ -11,7 +18,7 @@
 
 ### Patch Changes
 
-- [#1361](https://github.com/changesets/changesets/pull/1361) [`954a16a`](https://github.com/changesets/changesets/commit/954a16aa1d118a0f7fa745ffe0d19b304f685d4c) Thanks [@jakebailey](https://github.com/jakebailey)! - Ensure that `version`/`tag` do not touch private packages with when versioning/tagging is turned off using `versionPackages` config
+- [#1361](https://github.com/changesets/changesets/pull/1361) [`954a16a`](https://github.com/changesets/changesets/commit/954a16aa1d118a0f7fa745ffe0d19b304f685d4c) Thanks [@jakebailey](https://github.com/jakebailey)! - Version 2.25.0 introduced the `privatePackage` configuration option with default `{ version: false, tag: false }`; due to a bug, these options were not respected in all commands, leading to commands like `changeset tag` still tagging private packages. This has been fixed, and all packages now respect this option.
 
 ## 6.0.0
 
