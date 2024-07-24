@@ -20,6 +20,14 @@ export default {
     ),
     link: "https://x.com/nnecec_cn",
   },
+  banner: {
+    key: "contribution",
+    text: (
+      <a href="https://github.com/nnecec/changesets-docs" target="_blank">
+        👏 Let’s build the documentation together! Go →
+      </a>
+    ),
+  },
   footer: {
     text: (
       <span>
