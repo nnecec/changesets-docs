@@ -16,26 +16,18 @@ Changesets 的设计目的是通过允许做出贡献的人在做出贡献时做
 
 ## 添加 Changeset 工具
 
-```shell
-npm install @changesets/cli && npx changeset init
+```sh npm2yarn
+npm install @changesets/cli
 ```
 
-或者
-
-```shell
-yarn add @changesets/cli && yarn changeset init
+```sh npm2yarn
+npx changeset init
 ```
 
 ## 添加 Changesets
 
-```shell
+```sh npm2yarn
 npx changeset
-```
-
-或者
-
-```shell
-yarn changeset
 ```
 
 > 注意:如果想的话,你可以运行 `changeset add` 来添加 changeset,但是直接运行 Changesets 也可以。
@@ -44,28 +36,16 @@ yarn changeset
 
 当您决定要发布时,可以运行
 
-```shell
+```sh npm2yarn
 npx changeset version
-```
-
-或者
-
-```shell
-yarn changeset version
 ```
 
 这会消费所有变更集,并根据这些变更集更新到最合适的语义化版本。它还为每个已消费的变更集编写变更日志条目。我们建议在此步骤中查看变更日志条目和软件包的版本更改。
 
 一旦您确信这些是正确的,并对变更日志进行了任何必要的调整,就可以发布您的软件包:
 
-```shell
+```sh npm2yarn
 npx changeset publish
-```
-
-或者
-
-```shell
-yarn changeset publish
 ```
 
 这将在 npm 上当前列出的版本较新 的每个包中运行 npm 发布。

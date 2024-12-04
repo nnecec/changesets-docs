@@ -10,7 +10,7 @@ export default {
   decisions: "changesets 规则和决策设计",
   dictionary: "changesets 名词注释",
   "fixed-packages": "固定包",
-  "linked-packages": "联动包",
+  "linked-packages": "关联包",
   "modifying-changelog-format": "修改变更日志格式",
   prereleases: "预发行版",
   "problems-publishing-in-monorepos": "monorepos 中发布的问题",

@@ -1,34 +1,36 @@
-# Changesets 词典
+# Changesets 术语表
 
-这是 changesets 中使用的一些词汇和短语的列表,了解这些词汇有助于 changesets 的贡献者对项目中的各种概念达成共识。
+> 该文档翻译已由[@nnecec](https://github.com/nnecec)修订
 
-其中几个有相关的类型定义,您可以在[我们的 types 包](../packages/types)中找到。
+以下是一些在 changesets 中使用的词汇和短语列表，了解这些有助于贡献者对项目中的各种概念有一个共同的理解。
 
-- **changeset** - 发布一组特定升级类型的包以及所做更改摘要的 intent。Changesets 是可堆叠的,也就是说运行 `bump` 将正确应用任何数量的 changesets。Changesets 用于生成更多信息,例如 `发布信息` 和 `发布计划`。
-- **summary** - 关于 changeset 所代表的更改的信息 - 这将被写入 changeset 中提到的每个包的 `CHANGELOG.md` 文件。
-- **changeset folder** - 一个 `./changeset` 文件夹 - 这是我们存储 changeset 的地方。当前我们假设所有的 changeset 都写入这个文件夹。
-- **workspace** - 多包仓库中的本地包
-- **bump-type** - 预期的更改类型。类型为 `major | minor | patch | none`,基于 [semver](https://semver.org/) 的更改类型。
-- **range-type** - 包所依赖的范围类型,比如 `1.0.0`、`~1.0.0` 或 `^1.0.0`。这是 [node 定义的](https://github.com/npm/node-semver#ranges)有效语义化版本范围的子集,缩小到我们可以以编程方式更新的范围。
+部分词汇有关联的类型定义，您可以在[我们的 types 包](https://github.com/changesets/changesets/tree/main/packages/types)中找到。
+
+- **changeset** - 发布一组包的目的，包括特定的版本升级类型和更改摘要。Changesets 是可叠加的，也就是说运行 `bump` 命令会正确应用任意数量的 changesets。Changesets 用于生成进一步的信息，如`发布信息`和`发布计划`。
+- **summary** - 关于 changeset 所代表更改的信息——这些信息会被写入 changeset 中提到的每个包的 `CHANGELOG.md` 文件中。
+- **changeset 文件夹** - 一个 `./changeset` 文件夹——这是存储变化集文本版本的地方。目前我们假设所有 changesets 都是写在这个文件夹中的。
+- **workspace** - 多包仓库（multi-package repo）中的本地包
+- **bump-type** - 预期的更改类型。类型为 `major | minor | patch | none`，基于 [semver](https://semver.org/) 的变更类型。
+- **range-type** - 包依赖的范围类型，例如 `1.0.0`、`~1.0.0` 或 `^1.0.0`。这是一个由 [Node 定义](https://github.com/npm/node-semver#ranges)的有效 semver 范围的子集，限定了我们可以程序化更新的范围。
 - **bump**
-  - (1) 应用所有当前 changeset 并更新所有包版本和变更日志的命令。
-  - (2) 将包版本更新到新版本的行为。
-- **single-package repo** - 只包含一个位于仓库根目录的包的仓库。
-- **multi-package repo/monorepo** - 包含多个包的仓库,通常由 [Bolt](https://github.com/boltpkg/bolt) 或 [Yarn Workspaces](https://yarnpkg.com/lang/en/docs/workspaces/) 管理。
-- **release line generators** - `getReleaseLine` 和 `getDependencyReleaseLine` 函数,负责为变更日志创建插入的行。可以将特定版本的变更日志条目视为 `releaseLineGenerators(changesets)`。
-- **fixed packages** - 固定包共享语义化分类,这样所有固定包都具有相同的语义化版本,并且总是一起发布。这方面的日志最好参见我们的 [fixed-packages](./fixed-packages.md) 文档。
-- **linked packages** - 链接包共享语义化分类,这样所有已发布的链接包都具有一致的新语义化范围。这方面的日志最好参见我们的 [linked-packages](./linked-packages.md) 文档。
-- **release instruction** - 包含发布单个包的意图的对象,由包名称和升级类型组成。
-- **release plan** - 显示 changeset 集合将发布的所有内容以及版本和方式的计算对象。该对象包括对依赖项的计算以及对 `linked` 包的考虑。
-- **absolutely correct semver** - 做出语义化版本控制决策,以确保除主要版本之外的任何事情都不会破坏消费者的代码。因为从技术上讲,任何更改都可能会破坏用户的代码,绝对正确的语义化版本控制需要将所有更改视为主要更改。
-- **pragmatically correct semver** - 做出你认为正确的语义化版本控制决定,但可能有误。务实评估可能会随着项目的用户数量和项目的 API 表面区域而改变。每当我们谈论“正确的语义化版本控制”时,我们指的是“务实正确的语义化版本控制”。
-- **dependency** - 给定包所依赖的包。
-- **dependent** - 依赖于给定包的包。这通常用于获取包的依赖项的上下文,以便可以发布它们。
-- **release** - 组合版本控制和发布包,可能在发布之前包括构建过程。
-- **prereleases** - 预发布使用标记发布,不会在 npm 上作为 `latest` 发布。这是为了在你想要分享代码但尚未准备好让所有人使用的主要包时使用的。包的预发布很常见,但在单仓库中进行预发布存在独特的问题。您可以在我们的[预发布文档](./prereleases.md)中看到我们详尽的预发布文档。此外,还定义了两种不同的预发布方法,它们设计为分开使用。
-- **Release Candidate(RC)预发布** - RC 预发布在计划的重要发布(可能是主要发布)之前完成。它包括关于下一个计划发布版本的语义化版本信息、标签和预发布的迭代编号。预期的是提交这个版本,然后在分支上进行进一步工作。例如,如果我在一个包的 `1.0.0` 上,并且我想为下一个 `major` 版本做一个 RC,我们会有:`package-one@2.0.0-my-tag.0`,然后下一个发布是 `package-one@2.0.0-my-tag.1`。
-- **snapshot 预发布** - 快照预发布旨在轻松测试特定 git 提交时的所有更改。它以 `0.0.0` 发布,并使用 git hash 作为标签。这应该用于少形式化的方法,而不是发布候选版本,以便轻松安装和测试更改。例如,如果我们有一个在 `1.0.0` 的包,并且有一个将其升级为 `major` 的 changeset,快照版本将是 `0.0.0-ABCDEFGH`(最后的 github hash)。如果我们添加更多提交,下一个快照将是 `0.0.0-HIJKLMNOP`。
+  - (1) 应用所有当前 changesets 并更新所有包的版本和变更日志的命令。
+  - (2) 更新包版本到新版本的行为。
+- **单包仓库** - 只包含一个位于仓库根目录下的包的仓库。
+- **多包仓库/单体仓库(monorepo)** - 包含多个包的仓库，通常由 [Bolt](https://github.com/boltpkg/bolt) 或 [Yarn Workspaces](https://yarnpkg.com/lang/en/docs/workspaces/) 管理。
+- **发布行生成器** - 负责创建插入到变更日志中的行的 `getReleaseLine` 和 `getDependencyReleaseLine` 函数。特定发布的变更日志条目可以视为 `releaseLineGenerators(changesets)` 的结果。
+- **固定包** - 固定包共享一个 semver 分类，即所有固定包具有相同的 semver 版本并且总是同时发布。此逻辑的最佳解释参见我们的 [fixed-packages 文档](./fixed-packages)。
+- **链接包** - 链接包共享一个 semver 分类，即所有已发布的链接包都有统一的新 semver 范围。此逻辑的最佳解释参见我们的 [linked-packages 文档](./linked-packages)。
+- **发布指令** - 包含发布单个包意图的对象，由包名和 bump 类型组成。
+- **发布计划** - 一个显示一组 changesets 将发布的所有内容及其版本和方式的对象。该对象包括依赖关系的计算，并考虑了 `链接` 包的因素。
+- **绝对正确的 semver** - 进行 semver 版本决策以确保任何低于 major 的变更都不会破坏消费者的代码。因为实际上任何变更都有可能破坏用户的代码，所以绝对正确的 semver 要求所有变更为 major 变更。
+- **实际正确的 semver** - 你认为正确的 semver 决策，但可能会有误。随着项目的用户数量和 API 表面积的变化，实用评估也可能发生变化。当我们谈论‘正确的 semver’时，我们指的是‘实际正确的 semver’。
+- **依赖项** - 被另一个给定包所依赖的包。
+- **依赖者** - 依赖于另一个给定包的包。这个术语经常用于获取一个包的依赖者以便它们能够被发布。
+- **发布** - 包括版本控制和发布一个或多个包的过程，可能在发布前包含构建过程。
+- **预发布** - 使用标签的发布，不会作为 npm 上的 `latest` 发布。这设计用于分享代码，但还不准备让所有人都使用它作为主要包。虽然包的预发布很常见，但在 monorepo 内的预发布带来了独特的挑战。您可以在我们的 [预发布文档](./prereleases) 中查看详尽的预发布文档。此外，有两种不同的预发布方法分别定义为单独使用。
+- **发布候选（RC）预发布** - 在计划的重要发布之前进行的 RC 预发布，可能是 major 发布。它包含了关于下一个预期发布版本的 semver 信息、标签和预发布的迭代数字。其输出旨在提交，并在分支上继续进一步的工作。例如，如果我有一个包的版本是 `1.0.0`，并且我想为下一个 `major` 版本做一次 RC，那么我们将会有：`package-one@2.0.0-my-tag.0`，然后下一次发布将是 `package-one@2.0.0-my-tag.1`。
+- **快照预发布** - 快照预发布的目的是为了方便测试特定 Git 提交的所有更改。它会在 `0.0.0` 发布，并使用 Git hash 作为标签。这应该作为一种比发布候选更非正式的方法，使安装和测试更改更加容易。例如，如果我们有一个包的版本是 `1.0.0`，并且有一个将其版本升至 `major` 的 changeset，那么快照发布将会是 `0.0.0-ABCDEFGH`（最后的 GitHub hash）。如果我们添加更多提交，下一个快照将会是 `0.0.0-HIJKLMNOP`。
 
-## 我们还没有弄明白如何很好地解释的事情
+## 我们尚未想好如何解释清楚的事物
 
-- 包所依赖的包以及依赖关系的范围在包的依赖关系列表中指定的事实。这具体不涉及依赖关系,而是关于依赖项和依赖关系之间的关系。
+- 包依赖于另一个包的事实以及依赖范围是在包的依赖列表中指定的。这具体不是关于依赖本身，而是关于依赖者和依赖之间的关系。

@@ -8,16 +8,16 @@ Create changesets as normal, as described in [adding a changeset](./adding-a-cha
 
 ## Versioning your packages
 
-```
-yarn changeset version --snapshot
+```sh npm2yarn
+npx changeset version --snapshot
 ```
 
 This will apply the changesets, but instead of using the next version, all versions will be set to `0.0.0-THE_TIME_YOU_DID_THIS`.
 
 If you want to add a personalised part to this version number, such as `bulbasaur`, you can run
 
-```
-yarn changeset version --snapshot bulbasaur
+```sh npm2yarn
+npx changeset version --snapshot
 ```
 
 This will instead update versions to `0.0.0-bulbasaur-THE_TIME_YOU_DID_THIS`

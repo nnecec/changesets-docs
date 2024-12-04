@@ -1,6 +1,8 @@
 # 配置 Changesets
 
-Changesets 提供了轻量配置选项，主要用于修改默认工作流时使用。这些配置存储在 `.changeset/config.json` 文件中。默认配置如下：
+> 该文档翻译已由[@nnecec](https://github.com/nnecec)修订
+
+Changesets 的配置选项很少。这些选项主要用于当你需要更改默认工作流时使用。它们存储在 `.changeset/config.json` 中。我们的默认配置是：
 
 ```json
 {
@@ -14,24 +16,24 @@ Changesets 提供了轻量配置选项，主要用于修改默认工作流时使
 }
 ```
 
-> 注意:`linked`、`fixed`、`updateInternalDependencies`、`bumpVersionsWithWorkspaceProtocolOnly` 和 `ignore` 选项仅用于 monorepo 中的行为。
+> 注意：`linked`、`fixed`、`updateInternalDependencies`、`bumpVersionsWithWorkspaceProtocolOnly` 和 `ignore` 选项仅用于 monorepo 中的行为。
 
-## `commit` (布尔值，或作为模块路径的 `string` 类型，或数组类型 `[modulePath: string， options: any]`)
+## `commit` (`boolean`，或模块路径作为 `string`，或像 `[modulePath: string, options: any]` 这样的元组)
 
-此选项用于设置 `changeset add` 和 `changeset version` 命令是否也通过 git 添加和提交更改的文件，以及如何为它们生成提交消息。
+此选项用于设置 `changeset add` 命令和 `changeset version` 命令是否也会使用 git 添加并提交更改的文件，以及如何为它们生成提交信息。
 
-默认情况下，我们不提交文件，而是让用户提交文件。当设为 `true` 时，我们使用默认的提交消息生成器(`["@changesets/cli/commit", { "skipCI": "version" }]`)。当设为字符串和选项数组时，可指定加载提交消息生成函数的路径。路径对应的文件期望导出以下之一或两者：
+默认情况下，我们不会提交文件，而是留给用户去提交文件。如果设置为 `true`，我们将使用默认的提交信息生成器 (`["@changesets/cli/commit", { "skipCI": "version" }]`)。将其设置为字符串和选项元组会指定一个路径，我们从该路径加载提交信息生成函数。它期望是一个导出以下一个或两个方法的文件：
 
 ```
 {
-  getAddMessage，
+  getAddMessage,
   getVersionMessage
 }
 ```
 
-如果缺少任一方法，我们则不会为 `commit` 命令提交改动文件。
+如果其中一个方法不存在，则我们不会为该命令提交更改的文件。
 
-您可以使用以下方式指定自定义提交消息生成器:
+你可以通过以下方式指定自定义的提交信息生成器：
 
 ```json
 {
@@ -39,42 +41,42 @@ Changesets 提供了轻量配置选项，主要用于修改默认工作流时使
 }
 ```
 
-这与 [changelog 生成器函数的工作方式](#changelog-false-or-a-path) 类似。
+这与 [changelog 生成函数的工作方式](#changelog-false-or-a-path)类似。
 
 ## `access` (`restricted` | `public`)
 
-这设置发布包的方式 - 如果 `access: "restricted"`，包将作为私有发布，需要登录 npm 帐户并拥有访问权限才能安装。如果 `access: "public"`，包将可在公共 registry 中使用。
+这设置了包的发布方式——如果 `access: "restricted"`，包将被私有发布，需要登录具有安装权限的 npm 账户。如果 `access: "public"`，包将在公共注册表上可用。
 
-默认情况下，npm 会将 scoped npm 包发布为 `restricted` - 所以为了确保您不会意外公开发布代码，我们默认为 `restricted`。在大多数情况下，会被设置为 `public`。
+默认情况下，npm 会将作用域内的 npm 包作为 `restricted` 发布——因此为了确保你不会意外地公开发布代码，默认设置为 `restricted`。对于大多数情况，你可能想要将其设置为 `public`。
 
-可以通过在包的 `package.json` 中设置 `access` 来覆盖默认设置。
+你可以在特定包的 `package.json` 中设置 `access` 来覆盖这一设置。
 
-如果要阻止将包发布到 npm，请在该包的 `package.json` 中设置 `private: true`
+如果你想阻止一个包被发布到 npm，在该包的 `package.json` 中设置 `private: true`
 
 ## `baseBranch` (git 分支名称)
 
-将与 changeset 进行比较的基分支。许多内部 changeset 特性使用 git 将当前 changeset 与另一个分支进行比较。这个默认基分支将用于这些比较。通常应该设置为您将要合并更改的主分支。接受此信息的命令有一个 `--since` 选项，可用于覆盖此信息。
+Changesets 将进行比较的分支。许多内部 Changesets 功能使用 git 将当前 Changesets 与另一个分支进行比较。这决定了将使用哪个分支进行这些比较。通常应将其设置为你合并更改的主要分支。使用此信息的命令接受一个 `--since` 选项，可以用它来覆盖这个设置。
 
-> 为了帮助创造一个更具包容性的编码体验，我们建议将您的 `master` 分支重命名为 `main`。
+> 为了帮助使编码体验更具包容性，我们建议将你的 `master` 分支名称更改为 `main`。
 
-## `ignore` (包名称的数组)
+## `ignore` (包数组)
 
-此选项允许您指定一些即使在 changeset 中引用也不会发布的包。相反，这些 changeset 将被跳过，直到它们从这个数组中删除。
+此选项允许你指定一些即使在 Changesets 中引用也不会发布的包。相反，那些 Changesets 将被跳过，直到它们从这个数组中移除。
 
-> 此功能旨在临时使用，以允许更改合并而不发布它们 - 如果要完全停止发布包，请在其 `package.json` 中设置 `private: true`。
+> **此功能旨在临时使用，以便在不发布的情况下合并更改**——如果你完全不想发布一个包，请在它的 `package.json` 中设置 `private: true`。
 
-这有两个注意事项。
+有两个注意事项。
 
-1. 如果被 ignore 的包在未 ignore 的包的 changeset 中被提到，发布将失败。
-2. 如果作为发布的一部分，ignore 的包需要更新其中一个依赖项，发布将失败。
+1. 如果包在一个也包含未被忽略的包的 Changeset 中被提及，发布将会失败。
+2. 如果包需要更新其依赖之一作为发布的一部分。
 
-这些限制存在是为了确保您的仓库或发布的代码不会进入被破坏状态。有关发布复杂性的更多详细信息，请查看我们的指南[monorepo 中的发布问题](/problems-publishing-in-monorepos)。
+这些限制存在是为了确保你的仓库或已发布代码不会处于损坏状态。有关发布的更多细节，请参阅我们关于[monorepo 发布问题](/problems-publishing-in-monorepos)的指南。
 
-> 注意:您还可以按照 [micromatch](https://www.npmjs.com/package/micromatch) 格式提供 glob 表达式来匹配包。
+> 注意：你还可以提供通配符表达式来匹配包，根据 [micromatch](https://www.npmjs.com/package/micromatch) 格式。
 
-## `fixed` (包名称数组的数组)
+## `fixed` (包名数组的数组)
 
-此选项可用于声明哪些包作为一组同时进行版本升级和发布。例如，如果您有一个 `@changesets/button` 组件和一个 `@changesets/theme` 组件，并且您希望确保当一个被升级到 `1.1.0` 时，另一个也被升级到 `1.1.0`，而不管它是否有任何变更。要实现这一点，您可以通过以下配置:
+此选项可用于声明包应该一起进行版本升级和发布。例如，如果你有一个 `@changesets/button` 组件和一个 `@changesets/theme` 组件，并且你想确保当一个升级到 `1.1.0` 时，另一个也升级到 `1.1.0`，无论它是否有任何更改。为此，你的配置应该是：
 
 ```json
 {
@@ -82,11 +84,11 @@ Changesets 提供了轻量配置选项，主要用于修改默认工作流时使
 }
 ```
 
-使用此选项前，您应该阅读 [fixed packages](/fixed-packages) 的文档，以完全理解实现和影响。
+如果你想使用此选项，你应该阅读 [固定包](/fixed-packages) 的文档以充分理解实现和影响。
 
-## `linked` (包名称数组的数组)
+## `linked` (包名数组的数组)
 
-此选项可用于声明包应该“共享”一个版本，而不是完全独立地进行版本控制。例如，如果您有一个 `@changesets/button` 组件和一个 `@changesets/theme` 组件，并且您希望确保当一个被升级到 `2.0.0` 时，另一个也被升级到 `2.0.0`。要实现这一点，您会有以下配置:
+此选项可用于声明包应该'共享'一个版本，而不是完全独立地进行版本控制。例如，如果你有一个 `@changesets/button` 组件和一个 `@changesets/theme` 组件，并且你想确保当一个升级到 `2.0.0` 时，另一个也升级到 `2.0.0`。为此，你的配置应该是：
 
 ```json
 {
@@ -94,60 +96,60 @@ Changesets 提供了轻量配置选项，主要用于修改默认工作流时使
 }
 ```
 
-使用此选项前，您应该阅读 [linked packages](/linked-packages) 的文档，以完全理解实现和影响。
+如果你想使用此选项，你应该阅读 [链接包](/linked-packages) 的文档以充分理解实现和影响。
 
-> 注意:这与其他一些工具不同，其他工具会确保每当发布任何包时，所有其他包也都使用相同的版本发布。
+> 注意：这并不像其他工具所做的那样，确保当任何一个包被发布时，所有其他包也以相同的版本发布。
 
 ## `updateInternalDependencies`
 
-此选项设置当正在依赖的包发生变化时，是否应更新所依赖的版本。为了使这更容易理解，这里有一个示例:
+此选项设置当一个被依赖的包发生改变时，是否应该更新它所依赖的版本。为了更好地理解这一点，这里有一个例子：
 
-假设我们有两个包，一个依赖另一个:
-
-```
-pkg-a @ version 1.0.0
-pkg-b @ version 1.0.0
-  depends on pkg-a at range `^1.0.0
-```
-
-假设我们正在发布 `pkg-a` 和 `pkg-b` 的 patch 版本 - 此标志是用于确定我们是否更新 `pkg-b` 依赖 `pkg-a` 的方式。
-
-如果该选项设置为 `patch`，我们将更新依赖关系，所以现在我们会有:
+假设我们有两个包，一个依赖于另一个：
 
 ```
-pkg-a @ version 1.0.1
-pkg-b @ version 1.0.1
-  depends on pkg-a at range `^1.0.1
+pkg-a @ 版本 1.0.0
+pkg-b @ 版本 1.0.0
+  依赖于 pkg-a 在范围 `^1.0.0
 ```
 
-但是，如果该选项设置为 `minor`，那么它所依赖的只会在出现 minor 更改时才会更新，所以状态将是:
+假设我们正在发布 `pkg-a` 和 `pkg-b` 的补丁版本——这个标志用于确定我们是否更新 `pkg-b` 对 `pkg-a` 的依赖。
+
+如果选项设置为 `patch`，我们将更新依赖关系，因此我们现在有：
 
 ```
-pkg-a @ version 1.0.1
-pkg-b @ version 1.0.1
-  depends on pkg-a at range `^1.0.0
+pkg-a @ 版本 1.0.1
+pkg-b @ 版本 1.0.1
+  依赖于 pkg-a 在范围 `^1.0.1
 ```
 
-使用 `minor` 允许用户更主动地控制自己的重复使用包，并且如果您有许多相互连接的包，他们将能够安装更少的版本。使用 `patch` 将意味着用户会更频繁地使用更多更新的代码，但可能会导致重复使用问题。
+然而，如果选项设置为 `minor`，只有在发生次要版本更改时才会更新依赖关系，因此状态将是：
 
-如果超出已存在的版本范围声明，Changesets 将总是更新依赖关系。
+```
+pkg-a @ 版本 1.0.1
+pkg-b @ 版本 1.0.1
+  依赖于 pkg-a 在范围 `^1.0.0
+```
 
-> ⚠ 注意:这仅适用于当前版本中已经发布的包。如果 A 依赖 B，我们只发布 B，那么 A 不会被升级。
+使用 `minor` 允许使用者更积极地控制他们自己的包去重，并且如果有很多相互关联的包，可以让他们安装更少的版本。使用 `patch` 意味着使用者将更经常使用更新后的代码，但可能会导致去重问题。
 
-## `changelog` (布尔值或路径)
+如果这会导致旧的 semver 范围失效，Changesets 总是会更新依赖关系。
 
-此选项用于设置应该如何为包生成变更日志。如果它是 `false`，则不会生成变更日志。将其设置为字符串可以指定从中加载变更日志生成函数的路径。它需要是一个导出以下内容的文件:
+> ⚠ 注意：这仅适用于当前发布中已经发布的包。如果 A 依赖于 B，而我们只发布 B，那么 A 不会被升级。
+
+## `changelog` (false 或路径)
+
+此选项用于设置包的变更日志应该如何生成。如果它是 `false`，则不会生成变更日志。将其设置为字符串会指定一个路径，我们从该路径加载变更日志生成函数。它期望是一个导出以下内容的文件：
 
 ```
 {
-  getReleaseLine，
+  getReleaseLine,
   getDependencyReleaseLine
 }
 ```
 
-除了默认值，您还可以使用 `@changesets/changelog-git`，它会在变更日志中添加提交的链接，或者使用 `@changesets/changelog-github`，它需要 github 认证信息，并包含对添加 changeset 的人的感谢消息以及相关 PR 的链接。
+除了默认的之外，你可以使用 `@changesets/changelog-git`，它会在变更日志中添加提交链接，或者使用 `@changesets/changelog-github`，它需要 GitHub 认证，并包括对添加 Changeset 的人的感谢信息以及相关 PR 的链接。
 
-您可以使用以下方式指定我们的 github 变更日志生成器:
+你可以通过以下方式指定我们的 GitHub 变更日志生成器：
 
 ```json
 {
@@ -155,41 +157,41 @@ pkg-b @ version 1.0.1
 }
 ```
 
-有关这些函数的更多详细信息以及编写自己的信息，请参见 [changelog-functions](/modifying-changelog-format)
+有关这些函数的更多详情以及如何编写自己的信息，请参阅[changelog-functions](/modifying-changelog-format)。
 
 ## `bumpVersionsWithWorkspaceProtocolOnly` (布尔值)
 
-确定 Changesets 是否仅更新使用工作区协议且属于工作区的包的依赖范围。
+决定 Changesets 是否只应该为使用 workspace 协议的包更新依赖范围。
 
 ## `snapshot` (对象或 undefined)
 
-默认值:`undefined`
+默认值：`undefined`
 
 ### `useCalculatedVersion` (可选布尔值)
 
-默认值:`false`
+默认值：`false`
 
-当使用 `changesets version --snapshot` 时，默认行为是使用 `0.0.0` 作为快照版本的基础版本。
+当使用 `changesets version --snapshot` 时，默认行为是使用 `0.0.0` 作为快照发布的基准版本。
 
-设置 `useCalculatedVersion: true` 将更改默认行为，并使用基于 changeset 文件计算出的版本。
+设置 `useCalculatedVersion: true` 将改变默认行为，并将使用基于 Changeset 文件计算出的版本。
 
 ### `prereleaseTemplate` (可选字符串)
 
-默认值:`undefined` (参见下面的注释)
+默认值：`undefined`（见下文说明）
 
-使用带占位符的模板配置快照版本的后缀。
+配置快照发布的后缀，使用带有占位符的模板。
 
-**可用的占位符:**
+**可用占位符：**
 
-您可以使用以下占位符来自定义快照版本:
+你可以使用以下占位符来自定义快照发布版本：
 
-- `{tag}` - 快照的名称，如 `--snapshot something` 中指定
+- `{tag}` - 快照标签的名称，如在 `--snapshot something` 中指定
 - `{commit}` - Git 提交 ID
 - `{timestamp}` - 发布时间的 Unix 时间戳
-- `{datetime}` - 发布的日期和时间(14 个字符，例如 `20211213000730`)
+- `{datetime}` - 发布的日期和时间（14 个字符，例如 `20211213000730`）
 
-> 注意:如果使用空标记名 `--snapshot`，则不能使用 `{tag}` 作为占位符 - 这将导致错误。
+> 注意：如果你使用带有空标签名的 `--snapshot`，则不能使用 `{tag}` 作为占位符——这将导致错误。
 
 **默认行为**
 
-如果您未指定 `prereleaseTemplate`，默认行为将回退到使用以下模板:`{tag}-{datetime}`，如果标记为空(`--snapshot` 没有标记名)，它将只使用 `{datetime}`。
+如果你没有指定 `prereleaseTemplate`，默认行为将回退到使用以下模板：`{tag}-{datetime}`，而在标签为空（`--snapshot` 没有标签名）的情况下，它将只使用 `{datetime}`。

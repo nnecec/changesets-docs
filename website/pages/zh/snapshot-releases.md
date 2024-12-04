@@ -1,53 +1,55 @@
 # 快照发布
 
-快照发布是一种在不更新版本的情况下为您的更改发布以进行测试的方法。为了实现快照发布，使用了修改后的 `version` 和修改后的 `publish` 命令。在两个过程都运行后，您将在 changesets 中拥有一个版本为 `0.0.0-{tag}-DATETIMESTAMP` 的已发布版本的包。
+> 该文档翻译已由[@nnecec](https://github.com/nnecec)修订
+
+快照发布是一种在不更新版本号的情况下发布更改以供测试的方式。通过修改的 `version` 和修改的 `publish` 命令来完成快照发布。两个过程运行完毕后，你将在 Changesets 中拥有一个已发布的包版本，其版本号为 `0.0.0-{tag}-DATETIMESTAMP`。
 
 ## 开始
 
-按照[添加 changeset](./adding-a-changeset.md)中描述的方式创建 changeset。当您准备发布快照时，应创建一个专用的分支进行操作。
+按照[添加变更集](./adding-a-changeset.md)中描述的方法正常创建变更集。当你准备好发布快照时，应该为此创建一个专门的分支。
 
-## 为您的包版本化
+## 版本化你的包
 
-```bash
-yarn changeset version --snapshot
+```sh npm2yarn
+npx changeset version --snapshot
 ```
 
-这将应用 changesets，但是与使用下一个版本不同，所有版本都将设置为 `0.0.0-THE_TIME_YOU_DID_THIS`。
+这将应用变更集，但不是使用下一个版本号，而是所有版本都将被设置为 `0.0.0-THE_TIME_YOU_DID_THIS`。
 
-如果您想要为此版本号添加个性化部分，例如 `bulbasaur`，您可以运行
+如果你想向这个版本号添加个性化部分，例如 `bulbasaur`，你可以运行
 
-```bash
-yarn changeset version --snapshot bulbasaur
+```sh npm2yarn
+npx changeset version --snapshot bulbasaur
 ```
 
-这将将版本更新为 `0.0.0-bulbasaur-THE_TIME_YOU_DID_THIS`。
+这将把版本更新为 `0.0.0-bulbasaur-THE_TIME_YOU_DID_THIS`。
 
-## 发布您的包
+## 发布你的包
 
-在运行 `yarn changeset version` 命令后，可以使用 `changeset publish --tag bulbasaur` 命令发布包。通过使用 `--tag` 标志，您将不会将其添加到 npm 上的 `latest` 标志中。这非常重要，因为如果不包含标签，通过 `yarn add your-package-name` 安装包的人将安装快照版本。
+在运行 `yarn changeset version` 命令之后，你可以使用 `changeset publish --tag bulbasaur` 命令来发布这些包。通过使用 `--tag` 标志，你不会将其添加到 npm 的 `latest` 标签上。这一点非常重要，因为如果你不包含标签，人们在使用 `yarn add your-package-name` 安装你的包时将会安装快照版本。
 
 ## 使用 `--no-git-tag` 标志
 
-如果计划在本地发布快照版本或者在 CI 环境中从 [git tags](http://npm.github.io/publishing-pkgs-docs/updating/using-tags.html) 推送到远程，则可以在运行 `changeset publish` 时使用 `--no-git-tag` 命令行标志。
+如果你打算本地发布快照版本，或者从 CI 环境推送到远程仓库时推送 [git 标签](http://npm.github.io/publishing-pkgs-docs/updating/using-tags.html)，则可以在运行 `changeset publish` 时使用 `--no-git-tag` CLI 标志。
 
-当运行 `changeset publish --no-git-tag --snapshot` 时，changesets 将跳过为已发布的快照包创建 git 标签。这意味着可以在推送稳定版本时（使用常规的 `changeset publish`），仍然可以创建 git 标签，并且可以安全地在本地发布快照版本，而不会创建不必要的标签。
+当你运行 `changeset publish --no-git-tag --snapshot` 时，Changesets 将跳过为已发布的快照包创建 git 标签。这意味着在推送稳定版本（使用常规的 `changeset publish`）时仍然可以创建 git 标签，并且你可以安全地本地发布快照版本，而不会创建不必要的标签。
 
 ## 使用快照版本
 
-当您希望其他人测试您的快照时，他们可以将其 package.json 更新到您新发布的版本并运行安装，或者使用 `yarn add your-package-name@YOUR_TAG_OR_VERSIONS`。
+当希望人们测试你的快照时，他们可以更新自己的 `package.json` 到你新发布的版本并运行安装命令，或使用 `yarn add your-package-name@YOUR_TAG_OR_VERSIONS`。
 
-对于上述示例，您可以运行
+对于上面的例子，你可以运行
 
-```bash
-yarn add your-package-name@0.0.0-bulbasaur-THE_TIME_YOU_DID_THIS
+```sh npm2yarn
+npm install your-package-name@0.0.0-bulbasaur-THE_TIME_YOU_DID_THIS
 ```
 
-或者使用标签：
+或者标签：
 
-```bash
-yarn add your-package-name@bulbasaur
+```sh npm2yarn
+npm install your-package-name@bulbasaur
 ```
 
-## 关于快照分支的处理
+## 快照分支的处理方式
 
-在几乎所有情况下，我们建议在运行 `version` 后将更改合并回主分支。但是在快照情况下，情况并非如此。我们建议不要将此次 `version` 更改推送到任何分支。这是因为快照仅用于安装，而不是表示仓库的正确发布状态。保存生成的版本和使用的标签，但不要将其推送到计划合并到主分支的任何分支，也不要将其合并到主分支。
+几乎在所有情况下，我们建议在运行 `version` 后将更改合并回主分支。但对于快照，情况并非如此。我们建议不要将此次 `version` 运行后的更改推送到任何分支。这是因为快照仅供安装使用，不代表仓库的正确发布状态。保存生成的版本和你使用的标签，但不要推送到你计划合并到主分支的分支，也不要将其合并到主分支。
