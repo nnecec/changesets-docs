@@ -10,12 +10,12 @@ When you want to do a prerelease, you need to enter prerelease mode. You can do 
 
 A prerelease workflow might look something like this:
 
-```bash
-yarn changeset pre enter next
-yarn changeset version
+```sh
+npx changeset pre enter next
+npx changeset version
 git add .
 git commit -m "Enter prerelease mode and version packages"
-yarn changeset publish
+npx changeset publish
 git push --follow-tags
 ```
 
@@ -30,14 +30,14 @@ packages/
   pkg-b@minor
 ```
 
-```
-yarn changeset pre enter next
+```sh npm2yarn
+npx changeset pre enter next
 ```
 
 This command changes Changesets into prerelease mode which creates a `pre.json` file in the `.changeset` directory which stores information about the state the prerelease is in. For the specific data stored in the `pre.json` file, see the type definition of `PreState` in [`@changesets/types`](https://github.com/changesets/changesets/tree/main/packages/types).
 
-```
-yarn changeset version
+```sh npm2yarn
+npx changeset version
 ```
 
 This command will version packages as you would normally expect but append `-next.0`. An important note is that this will bump dependent packages that wouldn't be bumped in normal releases because prerelease versions are not satisfied by most semver ranges.(e.g. `^5.0.0` is not satisfied by `5.1.0-next.0`)
@@ -52,8 +52,8 @@ packages/
 .changeset/
 ```
 
-```
-yarn changeset publish
+```sh npm2yarn
+npx changeset publish
 ```
 
 This command will publish to npm as the publish command normally does though it will set the dist tag to the tag you specified when running the prerelease command.
@@ -83,8 +83,8 @@ packages/
   pkg-d@major
 ```
 
-```
-yarn changeset version
+```sh npm2yarn
+npx changeset version
 ```
 
 The version command will behave just like it does for the first versioning of a prerelease except the number at the end will be updated. The repo would now look like this:
@@ -97,8 +97,8 @@ packages/
   pkg-d@1.0.0-next.0 has no deps
 ```
 
-```
-yarn changeset publish
+```sh npm2yarn
+npx changeset publish
 ```
 
 This command will publish to npm just like it does for the first prerelease except because we're adding a new package(we need to define this, is it new to the repo or new to npm? I'm thinking new to npm), the new package will be published with the `latest` dist tag rather than the `next` tag because it's the first time it's being published which means it will be on `latest` anyway. For future publishes until pkg-d is out of prerelease, it will also be published to `latest`.
@@ -114,14 +114,14 @@ yarn changeset publish
 git push --follow-tags
 ```
 
-```
-yarn changeset pre exit
+```sh npm2yarn
+npx changeset pre exit
 ```
 
 This command will set an intent to exit prerelease mode in the `pre.json` file though it won't do any actual versioning.
 
-```
-yarn changeset version
+```sh npm2yarn
+npx changeset version
 ```
 
 The version command will apply any changesets currently in the repo and then remove the prerelease tag from the versions. The repo would now look like this:
@@ -134,8 +134,8 @@ packages/
   pkg-d@1.0.0 has no deps
 ```
 
-```
-yarn changeset publish
+```sh npm2yarn
+npx changeset publish
 ```
 
 The publish command will publish everything to the `latest` dist tag as normal.
