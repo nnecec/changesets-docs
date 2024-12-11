@@ -1,5 +1,6 @@
 export default {
-  index: "changesets 使用简介",
+  index: "什么是 changesets？",
+  "intro-to-using-changesets": "changesets 使用简介",
   "detailed-explanation": "changesets 技术详解",
   "common-questions": "常见问题",
   "adding-a-changeset": "添加一个 changeset",

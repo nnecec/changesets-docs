@@ -1,5 +1,6 @@
 export default {
-  index: "Intro to using changesets",
+  index: "What is Changesets?",
+  "intro-to-using-changesets": "Intro to using changesets",
   "detailed-explanation": "Detailed explanation",
   "common-questions": "Common questions",
   "adding-a-changeset": "Adding a changeset",

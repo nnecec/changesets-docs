@@ -9,7 +9,7 @@ Create changesets as normal, as described in [adding a changeset](./adding-a-cha
 ## Versioning your packages
 
 ```sh npm2yarn
-npx changeset version --snapshot
+npm run changeset version --snapshot
 ```
 
 This will apply the changesets, but instead of using the next version, all versions will be set to `0.0.0-THE_TIME_YOU_DID_THIS`.
@@ -17,7 +17,7 @@ This will apply the changesets, but instead of using the next version, all versi
 If you want to add a personalised part to this version number, such as `bulbasaur`, you can run
 
 ```sh npm2yarn
-npx changeset version --snapshot
+npm run changeset version --snapshot
 ```
 
 This will instead update versions to `0.0.0-bulbasaur-THE_TIME_YOU_DID_THIS`
@@ -38,14 +38,14 @@ When you want to get people to test your snapshots, they can either update their
 
 For our above example, you could run
 
-```
-yarn add your-package-name@0.0.0-bulbasaur-THE_TIME_YOU_DID_THIS
+```sh npm2yarn
+npm install your-package-name@0.0.0-bulbasaur-THE_TIME_YOU_DID_THIS
 ```
 
 or the tag:
 
-```
-yarn add your-package-name@bulbasaur
+```sh npm2yarn
+npm install your-package-name@bulbasaur
 ```
 
 ## What to do with the snapshot branch
