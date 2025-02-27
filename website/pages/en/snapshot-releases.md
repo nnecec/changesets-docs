@@ -17,7 +17,7 @@ This will apply the changesets, but instead of using the next version, all versi
 If you want to add a personalised part to this version number, such as `bulbasaur`, you can run
 
 ```sh npm2yarn
-npm run changeset version --snapshot
+npm run changeset version --snapshot bulbasaur
 ```
 
 This will instead update versions to `0.0.0-bulbasaur-THE_TIME_YOU_DID_THIS`
