@@ -1,5 +1,7 @@
+## What is Changesets?
+
 <p align="center">
-  <img src="./assets/images/changesets-banner-light.png" />
+  <img src="https://github.com/changesets/changesets/raw/main/assets/images/changesets-banner-light.png" />
 </p>
 
 <p align="center">
@@ -9,7 +11,7 @@
 <br/>
 
 [![npm package](https://img.shields.io/npm/v/@changesets/cli?label=%40changesets%2Fcli)](https://npmjs.com/package/@changesets/cli)
-[![View changelog](https://img.shields.io/badge/Explore%20Changelog-brightgreen)](./packages/cli/CHANGELOG.md)
+[![View changelog](https://img.shields.io/badge/Explore%20Changelog-brightgreen)](https://github.com/changesets/changesets/blob/main/packages/cli/CHANGELOG.md)
 
 The `changesets` workflow is designed to help when people are making changes, all the way through to publishing. It lets contributors declare how their changes should be released, then we automate updating package versions, and changelogs, and publishing new versions of packages based on the provided information.
 
@@ -23,42 +25,43 @@ The **@changesets/cli** package allows you to write `changeset` files as you mak
 
 ## How do I get started?
 
-If you just want to jump in to using changesets, the [Intro to using changesets](./docs/intro-to-using-changesets.md) and [@changesets/cli](./packages/cli/README.md) docs are where you should head.
+If you just want to jump in to using changesets, the [Intro to using changesets](/intro-to-using-changesets.md) and [@changesets/cli](https://github.com/changesets/changesets/blob/main/packages/cli/README.md) docs are where you should head.
 
 If you want a detailed explanation of the concepts behind changesets, or to understand how you would build on top
-of changesets, check out our [detailed-explanation](./docs/detailed-explanation.md).
+of changesets, check out our [detailed-explanation](/detailed-explanation).
 
-We also have a [dictionary](./docs/dictionary.md).
+We also have a [dictionary](/dictionary).
 
 ## Integrating with CI
 
 While changesets can be an entirely manual process, we recommend integrating it with how your CI works.
 
-To check that PRs contain a changeset, we recommend using [the changeset bot](https://github.com/apps/changeset-bot), or if you want to fail builds on a changesets failure, run `yarn changeset status` in CI.
+To check that PRs contain a changeset, we recommend using [the changeset bot](https://github.com/apps/changeset-bot), or if you want to fail builds on a changesets failure, run the following command in CI.
+
+```sh npm2yarn
+npm run changeset status
+```
 
 To make releasing easier, you can use [this changesets github action](https://github.com/changesets/action) to automate creating versioning pull requests, and optionally publishing packages.
 
-## Documentation
-
-Visit [Documentation](https://changesets-docs.vercel.app/) to view more information.
-
 ## Cool Projects already using Changesets for versioning and changelogs
 
-- [atlaskit](https://atlaskit.atlassian.com)
+- [atlaskit](https://atlaskit.atlassian.com/)
 - [emotion](https://emotion.sh/docs/introduction)
-- [keystone](https://keystonejs.com)
+- [keystone](https://v5.keystonejs.com/)
 - [react-select](https://react-select.com/home)
-- [XState](https://xstate.js.org)
-- [pnpm](https://pnpm.io)
+- [XState](https://xstate.js.org/)
+- [pnpm](https://pnpm.io/)
+- [filbert-js](https://github.com/kuldeepkeshwar/filbert-js)
 - [tinyhttp](https://github.com/talentlessguy/tinyhttp)
 - [Firebase Javascript SDK](https://github.com/firebase/firebase-js-sdk)
-- [Formik](https://github.com/jaredpalmer/formik)
+- [Formik](https://github.com/formium/formik)
 - [MobX](https://github.com/mobxjs/mobx)
 - [Nhost](https://github.com/nhost/nhost)
-- [verdaccio](https://verdaccio.org)
-- [Chakra UI](https://chakra-ui.com)
+- [verdaccio](https://verdaccio.org/)
+- [Chakra UI](https://chakra-ui.com/)
 - [Astro](https://astro.build)
-- [SvelteKit](https://kit.svelte.dev)
+- [SvelteKit](https://kit.svelte.dev/)
 - [Hydrogen](https://hydrogen.shopify.dev)
 - [react-pdf](https://github.com/diegomura/react-pdf)
 - [GraphQL Code Generator](https://github.com/dotansimha/graphql-code-generator)
@@ -76,11 +79,6 @@ Visit [Documentation](https://changesets-docs.vercel.app/) to view more informat
 - [Clerk](https://github.com/clerk/javascript)
 - [Hey API](https://github.com/hey-api/openapi-ts)
 - [neverthrow](https://github.com/supermacro/neverthrow)
-- [Apollo Client](https://github.com/apollographql/apollo-client)
-- [Adobe Spectrum CSS](https://github.com/adobe/spectrum-css)
-- [Adobe Spectrum Web Components](https://github.com/adobe/spectrum-web-components)
-
-<!-- NOTE: we currently only accept new entries with at least 1000 GitHub stars -->
 
 # Thanks/Inspiration
 
