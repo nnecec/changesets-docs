@@ -58,6 +58,7 @@ Visit [Documentation](https://changesets-docs.vercel.app/) to view more informat
 - [verdaccio](https://verdaccio.org)
 - [Chakra UI](https://chakra-ui.com)
 - [Astro](https://astro.build)
+- [Biome](https://biomejs.dev)
 - [SvelteKit](https://kit.svelte.dev)
 - [Hydrogen](https://hydrogen.shopify.dev)
 - [react-pdf](https://github.com/diegomura/react-pdf)
