@@ -83,7 +83,6 @@ bun changeset pre enter next
 
 This command changes Changesets into prerelease mode which creates a `pre.json` file in the `.changeset` directory which stores information about the state the prerelease is in. For the specific data stored in the `pre.json` file, see the type definition of `PreState` in [`@changesets/types`](https://github.com/changesets/changesets/tree/main/packages/types).
 
-
 ::: code-group
 
 ```sh [npm]
@@ -215,7 +214,7 @@ The version command will behave just like it does for the first versioning of a 
 
 ```
 packages/
-  pkg-a@1.1.0-next.1 has dep on pkg-b@^2.0.1
+  pkg-a@1.1.0-next.1 has dep on pkg-b@^2.1.0-next.0
   pkg-b@2.1.0-next.0 has no deps
   pkg-c@3.0.1-next.0 has no deps
   pkg-d@1.0.0-next.0 has no deps

@@ -3,7 +3,7 @@
 The command line for changesets is the main way of interacting with it. There are 4 main commands. If you are looking for how we recommend you setup and manage changesets with the commands, check out our [intro to using changesets](/intro-to-using-changesets)
 
 - init
-- add [--empty][--open]
+- add [--empty] [--open] [--since <ref>] [--message <text>]
 - version [--ignore, --snapshot]
 - publish [--otp=code, --tag]
 - status [--since=master --verbose --output=JSON_FILE.json]
@@ -14,81 +14,33 @@ The most important commands are `add`, which is used by contributors to add info
 
 ## `init`
 
-::: code-group
-
-```sh [npm]
-npx @changesets/cli init
+```
+changeset init
 ```
 
-```sh [pnpm]
-pnpm changeset init
-```
-
-```sh [yarn]
-yarn changeset init
-```
-
-```sh [bun]
-bun changeset init
-```
-
-:::
-
-This command sets up the .changeset folder. It generates a readme and a config file. The config file includes the default options and comments on what these options represent. You should run this command once when you are setting up changesets.
+This command sets up the `.changeset` folder. It generates a readme and a config file. The config file includes the default options and comments on what these options represent. You should run this command once when you are setting up changesets.
 
 ## `add`
 
-::: code-group
-
-```sh [npm]
-npx @changesets/cli add
 ```
-
-```sh [pnpm]
-pnpm changeset add
+changeset add
 ```
-
-```sh [yarn]
-yarn changeset add
-```
-
-```sh [bun]
-bun changeset add
-```
-
-:::
 
 or just
 
-::: code-group
-
-```sh [npm]
-npx @changesets/cli
 ```
-
-```sh [pnpm]
-pnpm changeset
+changeset
 ```
-
-```sh [yarn]
-yarn changeset
-```
-
-```sh [bun]
-bun changeset
-```
-
-:::
 
 This is the main command people use to interact with the changesets.
 
 This command will ask you a series of questions, first about what packages you want to release, then what semver bump type for each package, then it will ask for a summary of the entire changeset. The final step will show the changeset it will generate and confirm that you want to add it.
 
-Once confirmed, the changeset will be written a Markdown file that contains the summary and YAML front matter which stores the packages that will be released and the semver bump types for them.
+Once confirmed, the changeset will be written as a Markdown file that contains the summary and YAML front matter which stores the packages that will be released and the semver bump types for them.
 
-A changeset that major bumps @changesets/cli would look like this:
+A changeset that major bumps `@changesets/cli` would look like this:
 
-```mdx
+```
 ---
 "@changesets/cli": major
 ---
@@ -99,29 +51,13 @@ If you want to modify this file after it's generated, that's completely fine or 
 
 - `--empty` - allows you to create an empty changeset if no packages are being bumped, usually only required if you have CI that blocks merges without a changeset.
 
-::: code-group
-
-```sh [npm]
-npx @changesets/cli --empty
 ```
-
-```sh [pnpm]
-pnpm changeset --empty
+changeset --empty
 ```
-
-```sh [yarn]
-yarn changeset --empty
-```
-
-```sh [bun]
-bun changeset --empty
-```
-
-:::
 
 A changeset created with the empty flag would look like this:
 
-```mdx
+```
 ---
 ---
 ```
@@ -129,28 +65,19 @@ A changeset created with the empty flag would look like this:
 If you set the commit option in the config, the command will add the updated changeset files and then commit them.
 
 - `--open` - opens the created changeset in an external editor
+- `--message` (or `-m`) - provides the changeset summary from the command line instead of prompting for it.
+
+- `--since` - uses the provided branch, tag, or git ref (such as `main` or a git commit hash) to detect which packages have changed when populating the list of changed packages in the CLI. This is useful in gitflow workflows where you have multiple target branches and `baseBranch` in the config doesn't cover all use cases. If not provided, the command falls back to the `baseBranch` value in your `.changeset/config.json`.
+
+```
+changeset add --since=develop
+```
 
 ## version
 
-::: code-group
-
-```sh [npm]
-npx @changesets/cli version
 ```
-
-```sh [pnpm]
-pnpm changeset version
+changeset version
 ```
-
-```sh [yarn]
-yarn changeset version
-```
-
-```sh [bun]
-bun changeset version
-```
-
-:::
 
 This is one of two commands responsible for releasing packages. The version command takes changesets that have been made and updates versions and dependencies of packages, as well as writing changelogs. It is responsible for all file changes to versions before publishing to npm.
 
@@ -158,25 +85,9 @@ This is one of two commands responsible for releasing packages. The version comm
 
 Version has two options, `ignore` and `snapshot`:
 
-::: code-group
-
-```sh [npm]
-npx @changesets/cli version --ignore PACKAGE_NAME
 ```
-
-```sh [pnpm]
-pnpm changeset version --ignore PACKAGE_NAME
+changeset version --ignore PACKAGE_NAME
 ```
-
-```sh [yarn]
-yarn changeset version --ignore PACKAGE_NAME
-```
-
-```sh [bun]
-bun changeset version --ignore PACKAGE_NAME
-```
-
-:::
 
 This command is used to allow you to skip packages from being published. This allows you to run partial publishes of the repository. Using ignore has some safety rails:
 
@@ -185,49 +96,17 @@ This command is used to allow you to skip packages from being published. This al
 
 These restrictions exist to ensure your repository or published code does not end up in a broken state. For additional information on the intricacies of publishing, check out our guide on [problems publishing in monorepos](/problems-publishing-in-monorepos).
 
-::: code-group
-
-```sh [npm]
-npx @changesets/cli version --snapshot
 ```
-
-```sh [pnpm]
-pnpm changeset version --snapshot
+changeset version --snapshot
 ```
-
-```sh [yarn]
-yarn changeset version --snapshot
-```
-
-```sh [bun]
-bun changeset version --snapshot
-```
-
-:::
 
 Snapshot is used for a special kind of publishing for testing - it creates temporary versions with a tag, instead of updating versions from the current semver ranges. You should not use this without [reading the documentation on snapshot releases](/snapshot-releases)
 
 ## publish
 
-::: code-group
-
-```sh [npm]
-npx @changesets/cli publish [--otp={token}]
 ```
-
-```sh [pnpm]
-pnpm changeset publish [--otp={token}]
+changeset publish [--otp={token}]
 ```
-
-```sh [yarn]
-yarn changeset publish [--otp={token}]
-```
-
-```sh [bun]
-bun changeset publish [--otp={token}]
-```
-
-:::
 
 This publishes changes to npm, and creates git tags. This works by going into each package, checking if the version it has in its `package.json` is published on npm, and if it is not, running the `npm publish`. If you are using `pnpm` as a package manager, this automatically detects it and uses `pnpm publish` instead.
 
@@ -241,31 +120,15 @@ Because this command assumes that the last commit is the release commit, you sho
 
 It is useful to have git tags of a publish, to allow people looking for the code at that time to find them. We generate tags in git during publish, but you will need to push them back up if you want to make them available. We recommend after publish you run:
 
-```bash
+```
 git push --follow-tags
 ```
 
 ## status
 
-::: code-group
-
-```sh [npm]
-npx @changesets/cli status [--verbose] [--output={filePath}] [--since={gitTag}]
 ```
-
-```sh [pnpm]
-pnpm changeset status [--verbose] [--output={filePath}] [--since={gitTag}]
+changeset status [--verbose] [--output={filePath}] [--since={gitTag}]
 ```
-
-```sh [yarn]
-yarn changeset status [--verbose] [--output={filePath}] [--since={gitTag}]
-```
-
-```sh [bun]
-bun changeset status [--verbose] [--output={filePath}] [--since={gitTag}]
-```
-
-:::
 
 The status command provides information about the changesets that currently exist. If there are no changesets present, it exits with an error status code.
 
@@ -279,51 +142,19 @@ The status command provides information about the changesets that currently exis
 
 ## pre
 
-::: code-group
-
-```sh [npm]
-npx @changesets/cli pre [exit|enter {tag}]
+```
+changeset pre [exit|enter {tag}]
 ```
 
-```sh [pnpm]
-pnpm changeset pre [exit|enter {tag}]
-```
-
-```sh [yarn]
-yarn changeset pre [exit|enter {tag}]
-```
-
-```sh [bun]
-bun changeset pre [exit|enter {tag}]
-```
-
-:::
-
-The pre command enters and exits pre mode. The command does not do any actual versioning, when doing a pre-release, you should run changeset pre enter next(or a different tag, the tag is what is in versions and is the npm dist tag) and then do the normal release process with changeset version and changeset publish. For more information about the pre command, see the prereleases [the prereleases documentation](/prereleases).
+The pre command enters and exits pre mode. The command does not do any actual versioning, when doing a pre-release, you should run changeset pre enter next(or a different tag, the tag is what is in versions and is the npm dist tag) and then do the normal release process with changeset version and changeset publish. For more information about the pre command, see the prereleases [the prereleases documentation](https://github.com/changesets/changesets/blob/master/docs/prereleases).
 
 > NOTE: pre-releases are a very complicated feature. Many of the safety rails that changesets helps you with will be taken off. We recommend that you read both [problems publishing in monorepos](/problems-publishing-in-monorepos) and be clear on both exiting and entering pre-releases before using it. You may also prefer using [snapshot releases](/snapshot-releases) for a slightly less involved process.
 
 ## tag
 
-::: code-group
-
-```sh [npm]
-npx @changesets/cli tag
 ```
-
-```sh [pnpm]
-pnpm changeset tag
+changeset tag
 ```
-
-```sh [yarn]
-yarn changeset tag
-```
-
-```sh [bun]
-bun changeset tag
-```
-
-:::
 
 The tag command creates git tags for the current version of all packages. The tags created are equivalent to those created by [`changeset publish`](#publish), but the `tag` command does not publish anything to npm.
 
