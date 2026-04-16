@@ -8,49 +8,17 @@ Create changesets as normal, as described in [adding a changeset](./adding-a-cha
 
 ## Versioning your packages
 
-::: code-group
-
-```sh [npm]
-npm run changeset version --snapshot
 ```
-
-```sh [pnpm]
-pnpm changeset version --snapshot
-```
-
-```sh [yarn]
 yarn changeset version --snapshot
 ```
-
-```sh [bun]
-bun changeset version --snapshot
-```
-
-:::
 
 This will apply the changesets, but instead of using the next version, all versions will be set to `0.0.0-THE_TIME_YOU_DID_THIS`.
 
 If you want to add a personalised part to this version number, such as `bulbasaur`, you can run
 
-::: code-group
-
-```sh [npm]
-npm run changeset version --snapshot bulbasaur
 ```
-
-```sh [pnpm]
-pnpm changeset version --snapshot bulbasaur
-```
-
-```sh [yarn]
 yarn changeset version --snapshot bulbasaur
 ```
-
-```sh [bun]
-bun changeset version --snapshot bulbasaur
-```
-
-:::
 
 This will instead update versions to `0.0.0-bulbasaur-THE_TIME_YOU_DID_THIS`
 
@@ -70,47 +38,15 @@ When you want to get people to test your snapshots, they can either update their
 
 For our above example, you could run
 
-::: code-group
-
-```sh [npm]
-npm install your-package-name@0.0.0-bulbasaur-THE_TIME_YOU_DID_THIS
 ```
-
-```sh [pnpm]
-pnpm add your-package-name@0.0.0-bulbasaur-THE_TIME_YOU_DID_THIS
-```
-
-```sh [yarn]
 yarn add your-package-name@0.0.0-bulbasaur-THE_TIME_YOU_DID_THIS
 ```
 
-```sh [bun]
-bun add your-package-name@0.0.0-bulbasaur-THE_TIME_YOU_DID_THIS
-```
-
-:::
-
 or the tag:
 
-::: code-group
-
-```sh [npm]
-npm install your-package-name@bulbasaur
 ```
-
-```sh [pnpm]
-pnpm add your-package-name@bulbasaur
-```
-
-```sh [yarn]
 yarn add your-package-name@bulbasaur
 ```
-
-```sh [bun]
-bun add your-package-name@bulbasaur
-```
-
-:::
 
 ## What to do with the snapshot branch
 

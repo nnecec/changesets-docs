@@ -28,51 +28,13 @@ Sometimes, you may want to make CI fail if no changeset is present to ensure no 
 
 In your CI process, add a step that runs:
 
-::: code-group
-
-```sh [npm]
-npx @changesets/cli status --since=main
+```bash
+changeset status --since=main
 ```
-
-```sh [pnpm]
-pnpm changeset status --since=main
-```
-
-```sh [yarn]
-yarn changeset status --since=main
-```
-
-```sh [bun]
-bun changeset status --since=main
-```
-
-:::
 
 This will exit with exit code 1 if there have been no new changesets since main.
 
-In some cases, you may _want_ to merge a change without doing any releases (such as when you only change tests or build tools). In this case, you can run:
-
-::: code-group
-
-```sh [npm]
-npx @changesets/cli --empty
-```
-
-```sh [pnpm]
-pnpm changeset --empty
-```
-
-```sh [yarn]
-yarn changeset --empty
-```
-
-```sh [bun]
-bun changeset --empty
-```
-
-:::
-
-This will add a special changeset that does not release anything.
+In some cases, you may _want_ to merge a change without doing any releases (such as when you only change tests or build tools). In this case, you can run `changeset --empty`. This will add a special changeset that does not release anything.
 
 ## How do I run the version and publish commands?
 
@@ -84,51 +46,9 @@ We have a [github action](https://github.com/changesets/action) that
 If you don't want to use this action, the manual workflow we recommend for running the `version` and `publish` commands is:
 
 - A release coordinator (RC) calls to stop any merging to the base branch
-- The RC pulls down the base branch, runs one of the following commands, then makes a new PR with the versioning changes:
-
-::: code-group
-
-```sh [npm]
-npx @changesets/cli version
-```
-
-```sh [pnpm]
-pnpm changeset version
-```
-
-```sh [yarn]
-yarn changeset version
-```
-
-```sh [bun]
-bun changeset version
-```
-
-:::
-
+- The RC pulls down the base branch, runs `changeset version`, then makes a new PR with the versioning changes
 - The versioning changes are merged back into the base branch
-- The RC pulls the base branch again and runs one of the following commands:
-
-::: code-group
-
-```sh [npm]
-npx @changesets/cli publish
-```
-
-```sh [pnpm]
-pnpm changeset publish
-```
-
-```sh [yarn]
-yarn changeset publish
-```
-
-```sh [bun]
-bun changeset publish
-```
-
-:::
-
+- The RC pulls the base branch again and runs `changeset publish`
 - The RC runs `git push --follow-tags` to push the release tags back
 - The RC unblocks merging to the base branch
 

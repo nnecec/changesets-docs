@@ -8,7 +8,7 @@
 
 Changesets 的设计目的是尽可能轻松地叠加。因此，当在 `version` 中使用 changesets 时，我们会将版本提升平铺到指定语义化范围中的最高的升级版本中。
 
-例如：如果运行 `version`，并且我们在 `packageA` 中有 `1.1.1`，其中有两个 `minor` changesets 和一个 `patch` changeset，我们会将 `packageA` 升级到 `1.2.1`。
+例如：如果运行 `version`，并且我们在 `packageA` 中有 `1.1.1`，其中有两个 `minor` changesets 和一个 `patch` changeset，我们会将 `packageA` 升级到 `1.2.0`。
 
 这允许安全地添加和叠加 changesets，并确保软件包只会以适合 changeset 组合的版本发布一次，同时仍然确保每个更改都被捕获到变更日志中，并指明它是什么类型的变更。
 

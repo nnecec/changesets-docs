@@ -93,7 +93,7 @@ version 命令的行为与首次进行预发版的版本化相同，只是末尾
 
 ```
 packages/
-  pkg-a@1.1.0-next.1 依赖于 pkg-b@^2.0.1
+  pkg-a@1.1.0-next.1 依赖于 pkg-b@^2.1.0-next.0
   pkg-b@2.1.0-next.0 无依赖
   pkg-c@3.0.1-next.0 无依赖
   pkg-d@1.0.0-next.0 无依赖

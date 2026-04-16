@@ -56,9 +56,11 @@ Changesets 的配置选项很少。这些选项主要用于当你需要更改默
 
 ## `baseBranch` (git 分支名称)
 
-Changesets 将进行比较的分支。许多内部 Changesets 功能使用 git 将当前 Changesets 与另一个分支进行比较。这决定了将使用哪个分支进行这些比较。通常应将其设置为你合并更改的主要分支。使用此信息的命令接受一个 `--since` 选项，可以用它来覆盖这个设置。
+Changesets 用于比较以检测自基础分支上次提交以来发生了哪些变更的分支。通常应将其设置为你合并更改的默认分支，例如 `main` 或 `master`。
 
-> 为了帮助使编码体验更具包容性，我们建议将你的 `master` 分支名称更改为 `main`。
+使用此信息的命令接受一个 `--since` 选项，可以用它来覆盖这个设置。
+
+在本地，请确保基础分支存在且是最新的，以便 changesets 能够进行准确的比较。
 
 ## `ignore` (包数组)
 
@@ -160,7 +162,9 @@ pkg-b @ 版本 1.0.1
 
 有关这些函数的更多详情以及如何编写自己的信息，请参阅[changelog-functions](./modifying-changelog-format)。
 
-## `bumpVersionsWithWorkspaceProtocolOnly` (布尔值)
+## `bumpVersionsWithWorkspaceProtocolOnly` (可选布尔值)
+
+默认值：`false`
 
 决定 Changesets 是否只应该为使用 workspace 协议的包更新依赖范围。
 

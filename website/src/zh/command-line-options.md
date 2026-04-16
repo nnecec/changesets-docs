@@ -5,7 +5,7 @@
 命令行选项是与 changesets 交互的主要方式，它提供了四个主要命令。如果你想知道我们如何推荐使用命令来设置和管理 changesets，可以查看我们的 [changesets 使用入门](/)。
 
 - init
-- add [--empty][--open]
+- add [--empty] [--open] [--since <ref>] [--message <text>]
 - version [--ignore, --snapshot]
 - publish [--otp=code, --tag]
 - status [--since=master --verbose --output=JSON_FILE.json]
@@ -38,11 +38,11 @@ changeset
 
 这个命令会问你一系列问题，首先关于你想发布哪些包，然后是每个包的语义化版本递增类型，然后它会要求你总结整个 changeset。最后一步它会展示将要生成的 changeset，并确认您是否要添加它。
 
-一旦确认，这个 changeset 将被写入一个 Markdown 文件中，该文件包含摘要以及 YAML 前置数据，这些数据用来存储将要发布的包及它们对应的语义化版本递增类型。
+一旦确认，这个 changeset 将被写入一个 Markdown 文件，该文件包含摘要以及 YAML 前置数据，这些数据用来存储将要发布的包及它们对应的语义化版本递增类型。
 
 一个由 @changesets/cli 生成的 major 版本变更 changeset 看起来像这样:
 
-```mdx
+```
 ---
 "@changesets/cli": major
 ---
@@ -59,7 +59,7 @@ changeset --empty
 
 使用 empty 标志创建的 changeset 看起来像这样:
 
-```mdx
+```
 ---
 ---
 ```
@@ -67,6 +67,13 @@ changeset --empty
 如果在配置中设置了 commit 选项，该命令将添加更新的 changeset 文件，然后提交它们。
 
 - `--open` - 在外部编辑器中打开创建的 changeset
+- `--message`（或 `-m`）- 通过命令行提供 changeset 摘要，而无需交互式输入。
+
+- `--since` - 使用提供的分支、标签或 git ref（如 `main` 或 git 提交哈希）在 CLI 中填充已更改包列表时，检测哪些包已更改。这在你有多个目标分支且配置中的 `baseBranch` 无法覆盖所有用例的 gitflow 工作流中非常有用。如果未提供，命令将回退到 `.changeset/config.json` 中的 `baseBranch` 值。
+
+```bash
+changeset add --since=develop
+```
 
 ## version
 
@@ -139,7 +146,7 @@ status 命令提供关于当前存在的 changesets 的信息。如果没有 cha
 changeset pre [exit|enter {tag}]
 ```
 
-`pre` 命令进入和退出预发布模式。该命令不执行任何实际的版本控制，在进行预发布时，应该运行 `changeset pre enter next`(或使用其他标签，该标签即版本中的标签，也是 npm 分发标签)，然后使用 `changeset version` 和 `changeset publish` 执行正常的发布过程。有关 pre 命令的更多信息，请参阅预发布文档 [预发布文档](/prereleases)。
+`pre` 命令进入和退出预发布模式。该命令不执行任何实际的版本控制，在进行预发布时，应该运行 `changeset pre enter next`(或使用其他标签，该标签即版本中的标签，也是 npm 分发标签)，然后使用 `changeset version` 和 `changeset publish` 执行正常的发布过程。有关 pre 命令的更多信息，请参阅预发布文档 [预发布文档](https://github.com/changesets/changesets/blob/master/docs/prereleases)。
 
 > 注意:预发布是一个非常复杂的特性。许多 changesets 帮助你规避的风险在此过程中可能不再有效。我们建议在使用前，你不仅要阅读[monorepo 中的发布问题](/problems-publishing-in-monorepos)，还要清楚地理解如何进入和退出预发布流程。另外，对于较为简单的场景，你可能更倾向于使用 [快照版本](./snapshot-releases)。
 

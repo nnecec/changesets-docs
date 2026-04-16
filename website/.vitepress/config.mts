@@ -15,6 +15,7 @@ export default defineConfig({
         nav: [
           { text: "Home", link: "/" },
           { text: "Documentation", link: "/readme" },
+          { text: "v2.30.0", link: "https://github.com/changesets/changesets" },
         ],
         sidebar: [
           {
@@ -226,7 +227,7 @@ export default defineConfig({
     logo: "🦋",
     footer: {
       message:
-        'Built with ❤️ by <a href="https://github.com/nnecec" target="_blank">@nnecec</a>',
+        'Built with ❤️ by <a href="https://github.com/nnecec" target="_blank">@nnecec</a><br/><a href="https://github.com/nnecec/changesets-docs">The way</a> if you find the documentation source code.',
       copyright: `MIT ${new Date().getFullYear()} © <a href="https://github.com/changesets/changesets" target="_blank">Changesets</a>`,
     },
     socialLinks: [
