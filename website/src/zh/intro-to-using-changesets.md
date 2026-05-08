@@ -16,19 +16,51 @@ Changesets 的设计目的是通过允许做出贡献的人在做出贡献时做
 
 ## 添加 Changeset 工具
 
-```sh npm2yarn
-npm install @changesets/cli
-```
+:::: code-group
 
-```sh npm2yarn
+```sh [npm]
+npm install @changesets/cli
 npm run changeset init
 ```
 
+```sh [pnpm]
+pnpm add @changesets/cli
+pnpm changeset init
+```
+
+```sh [yarn]
+yarn add @changesets/cli
+yarn changeset init
+```
+
+```sh [bun]
+bun add @changesets/cli
+bun changeset init
+```
+
+::::
+
 ## 添加 Changesets
 
-```sh npm2yarn
+:::: code-group
+
+```sh [npm]
 npm run changeset
 ```
+
+```sh [pnpm]
+pnpm changeset
+```
+
+```sh [yarn]
+yarn changeset
+```
+
+```sh [bun]
+bun changeset
+```
+
+::::
 
 > 注意:如果想的话,你可以运行 `changeset add` 来添加 changeset,但是直接运行 Changesets 也可以。
 
@@ -36,17 +68,49 @@ npm run changeset
 
 当您决定要发布时,可以运行
 
-```sh npm2yarn
+:::: code-group
+
+```sh [npm]
 npm run changeset version
 ```
+
+```sh [pnpm]
+pnpm changeset version
+```
+
+```sh [yarn]
+yarn changeset version
+```
+
+```sh [bun]
+bun changeset version
+```
+
+::::
 
 这会消费所有变更集,并根据这些变更集更新到最合适的语义化版本。它还为每个已消费的变更集编写变更日志条目。我们建议在此步骤中查看变更日志条目和软件包的版本更改。
 
 一旦您确信这些是正确的,并对变更日志进行了任何必要的调整,就可以发布您的软件包:
 
-```sh npm2yarn
+:::: code-group
+
+```sh [npm]
 npm run changeset publish
 ```
+
+```sh [pnpm]
+pnpm changeset publish
+```
+
+```sh [yarn]
+yarn changeset publish
+```
+
+```sh [bun]
+bun changeset publish
+```
+
+::::
 
 这将在 npm 上当前列出的版本较新 的每个包中运行 npm 发布。
 

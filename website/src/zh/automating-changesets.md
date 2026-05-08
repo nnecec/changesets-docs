@@ -1,7 +1,5 @@
 # 自动化 Changesets
 
-> 此翻译已由[nnecec](https://github.com/nnecec)修订
-
 虽然 changesets 设计用于完全手动的流程，但它也提供了帮助自动化这些发布的工具。这些可以分为两个主要决定:
 
 1. 如何确保 Pull Request 包含 changesets？

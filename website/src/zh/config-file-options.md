@@ -1,7 +1,5 @@
 # 配置 Changesets
 
-> 此翻译已由[@nnecec](https://github.com/nnecec)修订
-
 Changesets 的配置选项很少。这些选项主要用于当你需要更改默认工作流时使用。它们存储在 `.changeset/config.json` 中。我们的默认配置是：
 
 ```json
@@ -11,9 +9,13 @@ Changesets 的配置选项很少。这些选项主要用于当你需要更改默
   "fixed": [],
   "linked": [],
   "access": "restricted",
-  "baseBranch": "main",
+  "baseBranch": "master",
   "updateInternalDependencies": "patch",
-  "ignore": []
+  "ignore": [],
+  "bumpVersionsWithWorkspaceProtocolOnly": false,
+  "changedFilePatterns": ["**"],
+  "prettier": true,
+  "privatePackages": { "version": true, "tag": false }
 }
 ```
 
@@ -160,6 +162,8 @@ pkg-b @ 版本 1.0.1
 }
 ```
 
+如果你想禁用感谢信息，可以在配置项中添加 `"disableThanks": true`。
+
 有关这些函数的更多详情以及如何编写自己的信息，请参阅[changelog-functions](./modifying-changelog-format)。
 
 ## `bumpVersionsWithWorkspaceProtocolOnly` (可选布尔值)
@@ -201,6 +205,18 @@ pkg-b @ 版本 1.0.1
 
 如果你没有指定 `prereleaseTemplate`，默认行为将回退到使用以下模板：`{tag}-{datetime}`，而在标签为空（`--snapshot` 没有标签名）的情况下，它将只使用 `{datetime}`。
 
+## `prettier` (可选布尔值)
+
+此选项用于配置 Changesets 是否使用 Prettier 格式化输出。当设置为 `false` 时，Changesets 将跳过 Prettier 格式化。
+
+默认值：`true`
+
+```json
+{
+  "prettier": false
+}
+```
+
 ## `privatePackages` (对象或 false)
 
 此选项用于设置如何处理私有包。默认情况下，Changesets 会更新私有包的变更日志并更新其版本，但不会创建标签。你可以配置此选项来更改默认行为。
@@ -225,5 +241,25 @@ pkg-b @ 版本 1.0.1
     "version": true,
     "tag": false
   }
+}
+```
+
+## `changedFilePatterns` (字符串数组)
+
+用于指定哪些已更改文件的 glob 模式会将包标记为已更改。可用于精细控制“变更”的判定范围（例如仅包含源码文件、忽略测试文件等）。
+
+默认值：
+
+```json
+{
+  "changedFilePatterns": ["**"]
+}
+```
+
+示例：
+
+```json
+{
+  "changedFilePatterns": ["src/**", "lib/**"]
 }
 ```

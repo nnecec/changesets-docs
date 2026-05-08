@@ -3,7 +3,7 @@
 The command line for changesets is the main way of interacting with it. There are 4 main commands. If you are looking for how we recommend you setup and manage changesets with the commands, check out our [intro to using changesets](/intro-to-using-changesets)
 
 - init
-- add [--empty] [--open] [--since <ref>] [--message <text>]
+- add [--empty] [--open] [--since \<ref\>] [--message \<text\>]
 - version [--ignore, --snapshot]
 - publish [--otp=code, --tag]
 - status [--since=master --verbose --output=JSON_FILE.json]

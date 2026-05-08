@@ -1,7 +1,5 @@
 # 快照发布
 
-> 此翻译已由[@nnecec](https://github.com/nnecec)修订
-
 快照发布是一种在不更新版本号的情况下发布更改以供测试的方式。通过修改的 `version` 和修改的 `publish` 命令来完成快照发布。两个过程运行完毕后，你将在 Changesets 中拥有一个已发布的包版本，其版本号为 `0.0.0-{tag}-DATETIMESTAMP`。
 
 ## 开始
@@ -10,16 +8,16 @@
 
 ## 版本化你的包
 
-```sh npm2yarn
-npx changeset version --snapshot
+```
+yarn changeset version --snapshot
 ```
 
 这将应用变更集，但不是使用下一个版本号，而是所有版本都将被设置为 `0.0.0-THE_TIME_YOU_DID_THIS`。
 
 如果你想向这个版本号添加个性化部分，例如 `bulbasaur`，你可以运行
 
-```sh npm2yarn
-npx changeset version --snapshot bulbasaur
+```
+yarn changeset version --snapshot bulbasaur
 ```
 
 这将把版本更新为 `0.0.0-bulbasaur-THE_TIME_YOU_DID_THIS`。
@@ -40,14 +38,14 @@ npx changeset version --snapshot bulbasaur
 
 对于上面的例子，你可以运行
 
-```sh npm2yarn
-npm install your-package-name@0.0.0-bulbasaur-THE_TIME_YOU_DID_THIS
+```
+yarn add your-package-name@0.0.0-bulbasaur-THE_TIME_YOU_DID_THIS
 ```
 
 或者标签：
 
-```sh npm2yarn
-npm install your-package-name@bulbasaur
+```
+yarn add your-package-name@bulbasaur
 ```
 
 ## 快照分支的处理方式

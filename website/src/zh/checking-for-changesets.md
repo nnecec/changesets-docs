@@ -1,7 +1,5 @@
 # 检查 changesets
 
-> 此翻译已由[nnecec](https://github.com/nnecec)修订
-
 使用 `@changesets/cli`，有一个 `status` 命令。可以在 [@changesets/cli 自述文件](https://github.com/changesets/changesets/tree/main/packages/cli#status)中看到它的文档。
 
 我们有 [github bot](https://github.com/apps/changeset-bot) 和[bitbucket 插件](https://bitbucket.org/atlassian/atlaskit-mk-2/src/master/build/bitbucket-release-addon/) 用于提醒用户注意缺失 changesets。

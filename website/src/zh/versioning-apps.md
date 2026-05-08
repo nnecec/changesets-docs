@@ -1,7 +1,5 @@
 # 管理应用程序或非 npm 包
 
-> 此翻译已由[@nnecec](https://github.com/nnecec)修订
-
 Changesets 也可以用于管理应用程序版本或非 npm 包（例如 dotnet NuGet 包、ruby gems、docker 镜像等）。
 
 唯一的要求是项目必须有一个 `package.json` 文件来管理仓库内的版本和依赖关系。

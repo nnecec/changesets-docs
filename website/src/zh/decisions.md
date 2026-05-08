@@ -1,7 +1,5 @@
 # 决策
 
-> 此翻译已由[@nnecec](https://github.com/nnecec)修订
-
 本文件讨论了创建 changesets 的一些规则和设计决策。这些决策的目标都是使使用 changesets 的体验尽可能简单，同时还提供最大可能的价值。
 
 ## 如何组合 changesets

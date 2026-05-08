@@ -1,7 +1,5 @@
 # 常见问题
 
-> 此翻译已由[nnecec](https://github.com/nnecec)修订
-
 以下是一些常见问题的简要解答，帮助您快速理解 changesets 的运作机制，而不涉及过多细节或具体工作流程。
 
 ## changesets 是自动生成的

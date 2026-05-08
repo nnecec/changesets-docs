@@ -38,9 +38,25 @@ While changesets can be an entirely manual process, we recommend integrating it 
 
 To check that PRs contain a changeset, we recommend using [the changeset bot](https://github.com/apps/changeset-bot), or if you want to fail builds on a changesets failure, run the following command in CI.
 
-```sh npm2yarn
+:::: code-group
+
+```sh [npm]
 npm run changeset status
 ```
+
+```sh [pnpm]
+pnpm changeset status
+```
+
+```sh [yarn]
+yarn changeset status
+```
+
+```sh [bun]
+bun changeset status
+```
+
+::::
 
 To make releasing easier, you can use [this changesets github action](https://github.com/changesets/action) to automate creating versioning pull requests, and optionally publishing packages.
 

@@ -1,7 +1,5 @@
 # 添加 changeset
 
-> 此翻译已由[nnecec](https://github.com/nnecec)修订
-
 嗨！您来到这里可能是因为有人或机器人要求您“添加 changeset”到一个项目中。让我们一步步了解添加 changeset。但首先，什么是 changeset?
 
 ## 什么是 changeset?

@@ -36,14 +36,29 @@ Changesets 致力于解决多包仓库中的这些问题，保持相互依赖的
 
 为了检查 PR 是否包含变更集，我们建议使用 [changeset-bot](https://github.com/apps/changeset-bot)，或者如果你想在变化集失败时使构建失败，可以在 CI 中运行
 
-```sh npm2yarn
+:::: code-group
+
+```sh [npm]
 npm run changeset status
 ```
+
+```sh [pnpm]
+pnpm changeset status
+```
+
+```sh [yarn]
+yarn changeset status
+```
+
+```sh [bun]
+bun changeset status
+```
+
+::::
 
 为了简化发布过程，你可以使用 [这个 Changesets GitHub Action](https://github.com/changesets/action) 来自动化创建版本化拉取请求，并可选地发布包。
 
 ## 已经使用 Changesets 管理版本和变更日志的项目
-
 
 - [atlaskit](https://atlaskit.atlassian.com/)
 - [emotion](https://emotion.sh/docs/introduction)

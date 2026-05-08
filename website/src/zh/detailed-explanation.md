@@ -1,7 +1,5 @@
 # Changesets 的详细解释
 
-> 此翻译已由[@nnecec](https://github.com/nnecec)修订
-
 下文将详细介绍什么是 changesets，以及它们的工作原理和思考方式。
 
 ## 问题:

@@ -1,7 +1,5 @@
 # 实验性选项
 
-> 此翻译已由[@nnecec](https://github.com/nnecec)修订
-
 所有实验性选项都在 `config.json` 的 `__experimentalUnsafeOptions_WILL_CHANGE_IN_PATCH` 标记下配置。
 
 > 请谨慎使用这些实验性标记，并请注意版本更新说明——这些配置标记在补丁版本中可能会发生变化。

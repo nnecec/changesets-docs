@@ -1,7 +1,5 @@
 # 修改变更日志格式
 
-> 此翻译已由[@nnecec](https://github.com/nnecec)修订
-
 Changesets 为包提供了默认的变更日志格式，它所显示的信息相对基础，但这个格式是可以自定义的。在这里我们将讨论如何修改变更日志，以便它可以包含额外的元信息。
 
 ## 设置使用的格式化函数
@@ -10,9 +8,25 @@ Changesets 为包提供了默认的变更日志格式，它所显示的信息相
 
 例如，Changesets 提供了一个名为 `@changesets/changelog-git` 的包。要使用它，你需要先安装该包。
 
-```sh npm2yarn
+:::: code-group
+
+```sh [npm]
 npm install @changesets/changelog-git
 ```
+
+```sh [pnpm]
+pnpm add @changesets/changelog-git
+```
+
+```sh [yarn]
+yarn add @changesets/changelog-git
+```
+
+```sh [bun]
+bun add @changesets/changelog-git
+```
+
+::::
 
 然后，修改你的 `.changeset/config.json` 文件以指向新包：
 

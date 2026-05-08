@@ -1,11 +1,9 @@
 # 命令行选项
 
-> 此翻译已由[nnecec](https://github.com/nnecec)修订
-
 命令行选项是与 changesets 交互的主要方式，它提供了四个主要命令。如果你想知道我们如何推荐使用命令来设置和管理 changesets，可以查看我们的 [changesets 使用入门](/)。
 
 - init
-- add [--empty] [--open] [--since <ref>] [--message <text>]
+- add [--empty] [--open] [--since \<ref\>] [--message \<text\>]
 - version [--ignore, --snapshot]
 - publish [--otp=code, --tag]
 - status [--since=master --verbose --output=JSON_FILE.json]

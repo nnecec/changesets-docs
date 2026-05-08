@@ -15,7 +15,7 @@ export default defineConfig({
         nav: [
           { text: "Home", link: "/" },
           { text: "Documentation", link: "/readme" },
-          { text: "v2.30.0", link: "https://github.com/changesets/changesets" },
+          { text: "Github", link: "https://github.com/changesets/changesets" },
         ],
         sidebar: [
           {

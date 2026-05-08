@@ -1,7 +1,5 @@
 # Changesets 术语表
 
-> 此翻译已由[@nnecec](https://github.com/nnecec)修订
-
 以下是一些在 changesets 中使用的词汇和短语列表，了解这些有助于贡献者对项目中的各种概念有一个共同的理解。
 
 部分词汇有关联的类型定义，您可以在[我们的 types 包](https://github.com/changesets/changesets/tree/main/packages/types)中找到。
